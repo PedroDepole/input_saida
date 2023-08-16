@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="recursos.css">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+    integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+    crossorigin="anonymous"></script>
+</head>
+    <style>
+        * {
+            margin: 0 auto;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            list-style-type: none;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .formulario {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            margin-top: 50px;
+            flex-direction: column;
+        }
+
+        ul li {
+            float: right;
+            padding: 60px;
+            
+        }
+
+        .nomes {
+            height: 60px;
+            background-color: royalblue;
+            width: 800px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+        }
+        
+        button {
+            padding: 10px;
+            background-color: royalblue;
+            border: none;
+            margin-top: 20px;
+            transition: .1s;
+        }
+
+        button:hover { background-color: rgb(56, 56, 160); }
+
+        button:active { scale: 0.93; }
+
+        input {
+            margin-top: 20px;
+            padding: 10px;
+        }
+        
+        .valores input {
+            background-color: #000;
+            color: #fff;
+        }
+
+        ul li:hover { transform: translateY(-2px); }
+
+    </style>
+<body>
+    <div class="container">
+        <div class="formulario">
+            <div class="nomes">
+                <ul>
+                    <li>Consulta</li>
+                    <li>Inclusão</li>
+                    <li>Alteração</li>
+                    <li>Descrição</li>
+                </ul>
+            </div>
+            <div>
+                <input type="text" id="consulta">
+                <input type="text" id="inclusao">
+                <input type="text" id="alteracao">
+                <input type="text" id="descricao">
+            </div>
+            <button onclick="recupera.pegarValorInput()">Recuperar</button>
+            <div class="valores">
+                <input type="text" id="valorconsulta" disabled>
+                <input type="text" id="valorinclusao" disabled>
+                <input type="text" id="valoralteracao" disabled>
+                <input type="text" id="valordescricao" disabled>
+            </div>
+            <button onclick="recupera.excluiValor()">Excluir</button>
+        </div>
+        
+    </div>
+        
+    <script>
+        class Recupera {
+            pegarValorInput() {
+                const consulta = document.getElementById('consulta').value
+                const inclusao = document.getElementById('inclusao').value
+                const alteracao = document.getElementById('alteracao').value
+                const descricao = document.getElementById('descricao').value
+
+                if(consulta != '' && inclusao != '' && alteracao != '' && descricao != '') {
+                    document.getElementById('consulta').value = ''
+                    document.getElementById('inclusao').value = ''
+                    document.getElementById('alteracao').value = ''
+                    document.getElementById('descricao').value = ''
+                    document.getElementById('valorconsulta').value = consulta
+                    document.getElementById('valorinclusao').value = inclusao
+                    document.getElementById('valoralteracao').value = alteracao
+                    document.getElementById('valordescricao').value = descricao
+                }else {
+                    alert('Preencha todos os campos')
+                    
+                }
+                
+            }
+
+            excluiValor() {
+                if(document.getElementById('valorconsulta').value != '' && document.getElementById('valorinclusao').value != '' && document.getElementById('valoralteracao').value != '' && document.getElementById('valordescricao').value != '') {
+                    document.getElementById('valorconsulta').value = ''
+                    document.getElementById('valorinclusao').value = ''
+                    document.getElementById('valoralteracao').value = ''
+                    document.getElementById('valordescricao').value = ''
+                }else {
+                    alert('Não existem valores a serem excluídos')
+                }
+            }
+        }
+
+        let recupera = new Recupera()
+    </script>
+</body>
+</html>
